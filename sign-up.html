@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up - Juru Data</title>
+    <script src="js/sign-in.js"></script>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            margin-right: 100px;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .profil {
+            flex: 1;
+            background-color: #f0f0f0;
+            background-image: url('img/image_1.jpg');
+            background-size: cover;
+            background-position: left;
+            background-repeat: no-repeat;
+            padding: 100px;
+            padding-top: 500px;
+        }
+
+        .form {
+            flex: 1;
+            background-color: #ffffff;
+            padding: 20px;
+        }
+
+        table {
+            width: 50vh;
+
+        }
+
+        td,
+        button {
+            width: 100%;
+        }
+
+        button {
+            margin-top: 10px;
+            padding: 20px;
+            background-color: #001D49;
+            color: aliceblue;
+            border: none;
+            transition: background-color 0.3s, transform 0.3s;
+        }
+
+        button:hover {
+            background-color: #001535;
+        }
+
+        button:active {
+            transform: scale(0.95);
+        }
+
+        input {
+            width: 100%;
+            height: 50px;
+            box-sizing: border-box;
+            margin-top: 10px;
+            background-color: #EEEEEE;
+            border: none;
+            padding-left: 15px;
+        }
+
+        img {
+            width: 300px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="profil">
+        <table>
+            <tr><img src="img/logo_1.png" alt="Logo Juru Data"></tr>
+        </table>
+    </div>
+    <div class="form">
+        <form action="php/process_signup.php" method="post">
+            <table align="center">
+                <tr>
+                    <td>
+                        <h3>Sign Up</h3>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="nama_depan" name="nama_depan" placeholder="Nama Depan" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="nama_belakang" name="nama_belakang" placeholder="Nama Belakang" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="email_user" name="email_user" placeholder="Email" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="text" id="no_telp" name="no_telp" placeholder="Nomor Telepon" required>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="password" id="kata_sandi" name="kata_sandi" placeholder="Password" required>
+                    </td>
+                </tr>
+                <tr align="center">
+                    <td>
+                        <button type="submit"><strong>Daftar</strong></button>
+                    </td>
+                </tr>
+                <tr align="center">
+                    <td>
+                        <strong>
+                            <p>Sudah Punya Akun? <a href="sign-in.html">Sign In</a></p>
+                        </strong>
+                    </td>
+                </tr>
+            </table>
+        </form>
+        
+    </div>
+</body>
+
+</html>

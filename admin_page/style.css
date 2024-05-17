@@ -1,0 +1,66 @@
+/* CSS untuk body */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  }
+  
+  /* CSS untuk navigasi samping */
+  #sidebarMenu {
+    min-height: 100vh;
+    background-color: #0A2647;
+  }
+  
+  #sidebarMenu .nav-link {
+    color: #FEFFFF;
+  }
+  
+  #sidebarMenu .nav-link.active {
+    color: #fff;
+    background-color: #2B7A78;
+  }
+  
+  #sidebarMenu .dropdown-divider {
+    border-top-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  /* CSS untuk konten utama */
+  main {
+    color: #FEFFFF;
+    background-color: #2B7A78;
+  }
+  
+  hr {
+    margin: 1rem 0;
+    color: inherit;
+    border: 0;
+    border-top: var(--bs-border-width) solid;
+    opacity: .25;
+  }
+  
+  /* Styling for the nav-link class */
+  .nav-link {
+    color: #fff;
+    text-decoration: none;
+    font-size: 18px;
+    /* margin-bottom: 10px; */
+    transition: all 0.3s ease;
+  }
+  
+  /* Styling for the nav-link when hovering over it */
+  .nav-link:hover {
+    color: #ffc107;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  /* Styling for the nav-link when it's in focus */
+  .nav-link:focus {
+    color: #ffc107;
+    background-color: rgba(255, 255, 255, 0.1);
+  }
+  
+  .bi {
+    font-size: 230%;
+  }
+  
+  .bi-box-arrow-left {
+    color: crimson;
+  }
