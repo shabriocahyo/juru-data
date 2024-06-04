@@ -12,9 +12,7 @@
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;600&family=Nunito:wght@600;700;800&display=swap" rel="stylesheet">
 
     <!-- Icon Font Stylesheet -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.10.0/css/all.min.css" rel="stylesheet">
@@ -35,27 +33,70 @@
 
     <!-- Custom CSS for dashboard layout -->
     <style>
+        body {
+            background-color: #f9f9f9;
+        }
+
         .video-section {
             display: flex;
+            flex-wrap: nowrap;
+            gap: 20px;
         }
 
         .video-player {
             flex: 0 0 70%;
             max-width: 70%;
-            margin-right: 20px;
         }
 
         .video-list {
             flex: 0 0 30%;
             max-width: 30%;
+            overflow-y: auto;
         }
 
         .video-card {
+            background-color: #fff;
+            border: none;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             margin-bottom: 20px;
         }
 
-        .start-learning-btn {
+        .video-card img {
             width: 100%;
+            height: auto;
+        }
+
+        .video-card-body {
+            padding: 15px;
+        }
+
+        .video-card-title {
+            font-size: 16px;
+            font-weight: 600;
+            margin: 10px 0;
+        }
+
+        .video-card-text {
+            font-size: 14px;
+            color: #606060;
+        }
+
+        .embed-responsive-item {
+            border-radius: 8px;
+        }
+
+        .card-header {
+            background-color: #fff;
+            border-bottom: none;
+            font-size: 24px;
+            font-weight: 600;
+            padding: 15px;
+        }
+
+        .main-content {
+            padding: 20px;
         }
     </style>
 </head>
@@ -64,47 +105,86 @@
     <div id="header"></div>
 
     <!-- Main Content -->
-    <div class="container mt-4">
-        <h2 class="mb-4">Dashboard</h2>
+    <div class="container mt-4 main-content">
+        <h2 class="mb-4 text-center">Kelas Data Science</h2>
 
         <!-- Video Section -->
-        <div class="video-section">
+        <div class="video-section row">
             <!-- Video Player -->
-            <div class="video-player">
-                <div class="card mb-4">
+            <div class="video-player col-md-7">
+                <div class="card video-card mb-4">
+                    <div class="card-header">
+                        Pengantar Data Science
+                    </div>
                     <div class="card-body">
-                        <h3 class="card-title">Pengantar Data Science</h3>
-                        <p class="card-text">Modul ini memberikan pengantar tentang apa itu Data Science, peranannya dalam berbagai industri, dan dasar-dasar konsep yang akan digunakan dalam kursus ini.</p>
-                        <p><strong>Durasi Video:</strong> 30 menit</p>
-                        <p><strong>Tugas Praktek:</strong> Silakan unggah tugas praktek Anda ke folder Pengantar Data Science di platform belajar kami.</p>
-                        <div class="embed-responsive embed-responsive-16by9">
-                            <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/VIDEO_ID_HERE" allowfullscreen></iframe>
+                        <div class="embed-responsive embed-responsive-16by9 mb-3">
+                            <iframe class="embed-responsive-item" src="https://www.youtube.com/watch?v=jidTC5TdR8Y" allowfullscreen></iframe>
                         </div>
+                        <h3 class="video-card-title">Pengantar Data Science</h3>
+                        <p class="video-card-text">Modul ini memberikan pengantar tentang apa itu Data Science, peranannya dalam berbagai industri, dan dasar-dasar konsep yang akan digunakan dalam kursus ini.</p>
+                        <p class="video-card-text"><strong>Durasi Video:</strong> 30 menit</p>
+                        <p class="video-card-text"><strong>Tugas Praktek:</strong> Silakan unggah tugas praktek Anda ke Google Drive dan kirim linknya melalui email kami!</p>
                     </div>
                 </div>
             </div>
 
             <!-- Video List -->
-            <div class="video-list">
-                <!-- Pengantar Data Science -->
-                <div class="card video-card">
-                    <div class="card-body">
-                        <h5 class="card-title">Pengantar Data Science</h5>
-                        <p><strong>Durasi Video:</strong> 30 menit</p>
+            <div class="video-list col-md-4">
+                <!-- Video Card Template -->
+                <div class="card video-card mb-4">
+                    <img src="img/thumbnail1.jpg" alt="Thumbnail">
+                    <div class="video-card-body">
+                        <h5 class="video-card-title">Pengantar Data Science</h5>
+                        <p class="video-card-text"><strong>Durasi Video:</strong> 30 menit</p>
                         <a href="#" class="btn btn-primary start-learning-btn">Mulai Belajar</a>
                     </div>
                 </div>
 
-                <!-- Matematika dan Statistik Dasar -->
-                <div class="card video-card">
-                    <div class="card-body">
-                        <h5 class="card-title">Matematika dan Statistik Dasar</h5>
-                        <p><strong>Durasi Video:</strong> 45 menit</p>
+                <div class="card video-card mb-4">
+                    <img src="img/thumbnail2.jpg" alt="Thumbnail">
+                    <div class="video-card-body">
+                        <h5 class="video-card-title">Matematika dan Statistik Dasar</h5>
+                        <p class="video-card-text"><strong>Durasi Video:</strong> 45 menit</p>
                         <a href="#" class="btn btn-primary start-learning-btn">Mulai Belajar</a>
                     </div>
                 </div>
 
-                <!-- Pengolahan Data -->
+                <div class="card video-card mb-4">
+                    <img src="img/thumbnail1.jpg" alt="Thumbnail">
+                    <div class="video-card-body">
+                        <h5 class="video-card-title">Pengantar Data Science</h5>
+                        <p class="video-card-text"><strong>Durasi Video:</strong> 30 menit</p>
+                        <a href="#" class="btn btn-primary start-learning-btn">Mulai Belajar</a>
+                    </div>
+                </div>
+
+                <div class="card video-card mb-4">
+                    <img src="img/thumbnail2.jpg" alt="Thumbnail">
+                    <div class="video-card-body">
+                        <h5 class="video-card-title">Matematika dan Statistik Dasar</h5>
+                        <p class="video-card-text"><strong>Durasi Video:</strong> 45 menit</p>
+                        <a href="#" class="btn btn-primary start-learning-btn">Mulai Belajar</a>
+                    </div>
+                </div>
+
+                <div class="card video-card mb-4">
+                    <img src="img/thumbnail1.jpg" alt="Thumbnail">
+                    <div class="video-card-body">
+                        <h5 class="video-card-title">Pengantar Data Science</h5>
+                        <p class="video-card-text"><strong>Durasi Video:</strong> 30 menit</p>
+                        <a href="#" class="btn btn-primary start-learning-btn">Mulai Belajar</a>
+                    </div>
+                </div>
+
+                <div class="card video-card mb-4">
+                    <img src="img/thumbnail2.jpg" alt="Thumbnail">
+                    <div class="video-card-body">
+                        <h5 class="video-card-title">Matematika dan Statistik Dasar</h5>
+                        <p class="video-card-text"><strong>Durasi Video:</strong> 45 menit</p>
+                        <a href="#" class="btn btn-primary start-learning-btn">Mulai Belajar</a>
+                    </div>
+                </div>
+
                 <!-- Add more video cards for other topics following the same structure -->
             </div>
         </div>

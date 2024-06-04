@@ -16,9 +16,10 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.7.2/font/bootstrap-icons.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  <script src="js/header.js" defer></script>
   <script>
     $(function () {
-      $("#index").load("index.html");
+      $("#header").load("header.html");
     });
   </script>
 </head>
@@ -27,25 +28,7 @@
   <div class="d-flex" id="wrapper">
     <div class="mt-5 pt-2" id="index" include-html="index.html"></div>
     <div class="mt-5 pt-2" id="page-content-wrapper">
-      <!-- Top navigation-->
-      <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom fixed-top">
-        <div class="container-fluid">
-          <button class="btn bi bi-list" id="sidebarToggle"></button>
-          <div class="sidebar-heading bg-light mt-2">
-            <h5>Admin Juru Data Technology School</h5>
-          </div>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-            data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-              <li class="nav-item"><a id="logout" class="nav-link bi bi-box-arrow-left" href="login.html"> Logout</a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-      <!-- End Navigation -->
+      <div id="header"></div>
       <div class="container-fluid">
         <div class="row">
           <div id="index" include-html="index.html"></div>
@@ -126,13 +109,13 @@
 
     // Jika pengguna mengkonfirmasi untuk menghapus, lanjutkan dengan mengarahkan ke halaman hapus
     if (confirmation) {
-        return true;
+      return true;
     } else {
-        // Jika pengguna membatalkan penghapusan, batalkan operasi default (mengarahkan ke halaman hapus)
-        event.preventDefault();
-        return false;
+      // Jika pengguna membatalkan penghapusan, batalkan operasi default (mengarahkan ke halaman hapus)
+      event.preventDefault();
+      return false;
     }
-}
+  }
 
 </script>
 

@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tentang</title>
+    <title>Tentang Kami - Juru Data Technology School</title>
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
@@ -33,37 +33,64 @@
     <script src="js/footer.js" defer></script>
 
     <style>
+        body {
+            font-family: 'Heebo', sans-serif;
+        }
+
         #header {
             position: fixed;
             top: 0;
             left: 0;
             z-index: 999;
+            width: 100%;
         }
 
         #about-content {
             padding: 60px 0;
             background-color: #f8f9fa;
-            /* Background color for the about section */
         }
 
         #about-content h2 {
             color: #333;
-            /* Heading color */
             margin-bottom: 30px;
+            font-size: 2.5rem;
         }
 
         #about-content p {
             color: #666;
-            /* Paragraph color */
             font-size: 16px;
             line-height: 1.8;
+            text-align: justify;
         }
 
-        /* Style for vision and mission section */
+        .statistics {
+            margin: 40px 0;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .statistics .stat {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .statistics .stat h3 {
+            font-size: 2rem;
+            color: #333;
+        }
+
+        .statistics .stat p {
+            font-size: 1rem;
+            color: #666;
+        }
+
         .vision-mission {
             background-color: #fff;
-            /* Background color for vision and mission section */
             padding: 60px 0;
+            position: relative;
+            overflow: hidden;
         }
 
         .vision-mission .container {
@@ -71,22 +98,17 @@
             z-index: 1;
         }
 
-        .vision-mission .vision,
-        .vision-mission .mission {
-            text-align: center;
-        }
-
         .vision-mission h3 {
             margin-bottom: 30px;
             color: #333;
-            /* Heading color */
+            font-size: 2rem;
         }
 
         .vision-mission p {
             color: #666;
-            /* Paragraph color */
             font-size: 16px;
             line-height: 1.8;
+            text-align: justify;
         }
 
         .vision-mission .overlay {
@@ -99,16 +121,16 @@
             z-index: -1;
         }
 
-        /* Style for team section */
         .team {
             padding: 60px 0;
+            background-color: #f8f9fa;
         }
 
         .team h2 {
             margin-bottom: 30px;
             color: #333;
-            /* Heading color */
             text-align: center;
+            font-size: 2.5rem;
         }
 
         .team .row {
@@ -125,27 +147,38 @@
             max-width: 100%;
             border-radius: 50%;
             border: 6px solid #fff;
-            /* Add border to the image */
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-            /* Add shadow effect to the image */
             transition: transform 0.3s ease;
-            /* Add smooth transition effect */
         }
 
         .team-member img:hover {
             transform: scale(1.05);
-            /* Add scale effect on hover */
         }
 
         .team-member h4 {
             margin-top: 15px;
             color: #333;
-            /* Name color */
+            font-size: 1.25rem;
         }
 
         .team-member p {
             color: #666;
-            /* Position color */
+            font-size: 1rem;
+        }
+
+        .team-member .description {
+            font-size: 0.875rem;
+            color: #999;
+            margin-top: 10px;
+            text-align: justify;
+        }
+
+        .quote {
+            padding: 40px 0;
+            background-color: #f8f9fa;
+            text-align: center;
+            font-style: italic;
+            color: #555;
         }
     </style>
 </head>
@@ -161,7 +194,7 @@
                     <nav aria-label="breadcrumb">
                         <ol class="breadcrumb justify-content-center">
                             <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
-                            <li class="breadcrumb-item"><a class="text-white" href="#">Tentang</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Tentang</li>
                         </ol>
                     </nav>
                 </div>
@@ -169,12 +202,15 @@
         </div>
     </div>
 
-    <!-- ABOUT US (START) -->
+    <!-- ABOUT US (UBAH DARI SINI) -->
 
     <div id="about-content" class="container">
-        <div class="row">
-            <div class="col-lg-8 mx-auto">
-                <h2 class="text-center">Selamat Datang Di Juru Data Technology School</h2>
+        <div class="row align-items-center">
+            <div class="col-lg-4">
+                <img src="img/logo_2.png" alt="Juru Data Technology School" class="img-fluid rounded m-3 p-5">
+            </div>
+            <div class="col-lg-7">
+                <h2>Selamat Datang Di <br> Juru Data Technology School</h2>
                 <p>
                     Kami hadir untuk mendukung Indonesia dalam mengarahkan perubahan digital menuju Era Emas Indonesia
                     dengan pemanfaatan teknologi Data Science. Di Juru Data Technology School, kami percaya bahwa teknologi dapat
@@ -185,21 +221,40 @@
         </div>
     </div>
 
+    <div class="statistics container">
+        <div class="row">
+            <div class="col-lg-3 col-md-6 stat">
+                <h3>50+</h3>
+                <p>Pengajar Berpengalaman</p>
+            </div>
+            <div class="col-lg-3 col-md-6 stat">
+                <h3>2000+</h3>
+                <p>Peserta Terdaftar</p>
+            </div>
+            <div class="col-lg-3 col-md-6 stat">
+                <h3>30+</h3>
+                <p>Kelas Tersedia</p>
+            </div>
+            <div class="col-lg-3 col-md-6 stat">
+                <h3>100+</h3>
+                <p>Webinar Dijalankan</p>
+            </div>
+        </div>
+    </div>
+
     <div class="vision-mission">
         <div class="container">
             <div class="row">
                 <div class="col-lg-6 vision">
-                    <h3>Our Vision</h3>
+                    <h3>Visi Kami</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consequat, quam sit amet
-                        consectetur pretium.
+                        Mewujudkan generasi yang siap menghadapi tantangan era digital dengan penguasaan teknologi dan data yang mendalam.
                     </p>
                 </div>
                 <div class="col-lg-6 mission">
-                    <h3>Our Mission</h3>
+                    <h3>Misi Kami</h3>
                     <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed consequat, quam sit amet
-                        consectetur pretium.
+                        Memberikan pendidikan terbaik dalam bidang Data Science dan teknologi kepada seluruh lapisan masyarakat Indonesia, sehingga dapat bersaing di tingkat global.
                     </p>
                 </div>
             </div>
@@ -209,34 +264,85 @@
 
     <div class="team">
         <div class="container">
-            <h2>Our Team</h2>
+            <h2>Tim Kami</h2>
             <div class="row">
                 <div class="col-md-4">
                     <div class="team-member">
-                        <img src="img/dp.png" alt="Team Member">
+                        <img src="img/dp.png" alt="John Doe" class="img-fluid rounded shadow">
                         <h4>John Doe</h4>
                         <p>CEO</p>
+                        <div class="description">
+                            John adalah pemimpin visioner dengan pengalaman lebih dari 20 tahun di industri teknologi. Ia berfokus pada transformasi digital dan kepemimpinan inovatif untuk menciptakan dampak positif bagi masyarakat.
+                        </div>
+                        <div class="social-media mt-3">
+                            <a href="https://www.instagram.com/johndoe" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/in/johndoe" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="team-member">
-                        <img src="img/dp.png" alt="Team Member">
+                        <img src="img/dp.png" alt="Jane Smith" class="img-fluid rounded shadow">
                         <h4>Jane Smith</h4>
                         <p>COO</p>
+                        <div class="description">
+                            Jane adalah penggerak operasional dengan latar belakang kuat dalam manajemen proyek dan pengembangan strategi pendidikan. Dia berkomitmen untuk memastikan setiap inisiatif mencapai hasil yang optimal.
+                        </div>
+                        <div class="social-media mt-3">
+                            <a href="https://www.instagram.com/janesmith" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/in/janesmith" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-4">
                     <div class="team-member">
-                        <img src="img/dp.png" alt="Team Member">
+                        <img src="img/dp.png" alt="David Johnson" class="img-fluid rounded shadow">
                         <h4>David Johnson</h4>
                         <p>CFO</p>
+                        <div class="description">
+                            David membawa keahlian keuangan yang solid dengan pengalaman dalam pengelolaan anggaran dan perencanaan keuangan jangka panjang. Dia bertujuan untuk memastikan keberlanjutan finansial yang kuat bagi organisasi.
+                        </div>
+                        <div class="social-media mt-3">
+                            <a href="https://www.instagram.com/davidjohnson" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/in/davidjohnson" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-member">
+                        <img src="img/dp.png" alt="Susan Miller" class="img-fluid rounded shadow">
+                        <h4>Susan Miller</h4>
+                        <p>CMO</p>
+                        <div class="description">
+                            Susan adalah ahli pemasaran dengan pengalaman mendalam dalam strategi brand dan pemasaran digital. Dia bertujuan untuk menghubungkan Juru Data dengan audiens yang lebih luas dan memperluas dampaknya.
+                        </div>
+                        <div class="social-media mt-3">
+                            <a href="https://www.instagram.com/susanmiller" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/in/susanmiller" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="team-member">
+                        <img src="img/dp.png" alt="Michael Brown" class="img-fluid rounded shadow">
+                        <h4>Michael Brown</h4>
+                        <p>CTO</p>
+                        <div class="description">
+                            Michael adalah ahli teknologi dengan fokus pada pengembangan produk dan inovasi teknologi. Dia bertujuan untuk memimpin pengembangan solusi data yang revolusioner untuk menyelesaikan tantangan masa depan.
+                        </div>
+                        <div class="social-media mt-3">
+                            <a href="https://www.instagram.com/michaelbrown" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="https://www.linkedin.com/in/michaelbrown" target="_blank"><i class="fab fa-linkedin"></i></a>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
+    
+    
 
-    <!-- ABOUT US (FINISH) -->
+    <!-- ABOUT US (SAMPAI SINI) -->
 
     <div id="footer"></div>
 

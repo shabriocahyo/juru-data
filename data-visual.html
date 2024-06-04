@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Analyst Class</title>
+    <title>Data Visualization Class</title>
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
@@ -33,13 +33,11 @@
     <script src="js/footer.js" defer></script>
 
     <style>
-        main {
-            padding-top: 80px;
-        }
-
         #header {
             position: fixed;
-            z-index: 9999;
+            top: 0;
+            left: 0;
+            z-index: 999;
         }
     </style>
 </head>
@@ -47,36 +45,57 @@
 <body>
     <div id="header"></div>
 
+    <div id="title" class="container-fluid bg-primary py-5 mb-5 page-header">
+        <div class="container py-5">
+            <div class="row justify-content-center">
+                <div class="col-lg-10 text-center">
+                    <h1 class="display-3 text-white animated slideInDown">Kelas</h1>
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb justify-content-center">
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Home</a></li>
+                            <li class="breadcrumb-item"><a class="text-white" href="#">Program</a></li>
+                            <li class="breadcrumb-item text-white active" aria-current="page">Kelas Data Visualization
+                            </li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <main class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card my-5 shadow">
-                    <img src="img/da-img.png" class="card-img-top" alt="Class Thumbnail">
+                    <img src="img/kelas-dv.png" class="card-img-top" alt="Class Thumbnail">
                     <div class="card-body">
-                        <h2 class="card-title">KELAS DATA ANALYST</h2>
                         <!-- Deskripsi Kelas -->
-                        <p class="card-text" style="text-align: justify;">Kelas data analyst adalah pelatihan intensif
-                            yang menyediakan keterampilan analisis data yang dibutuhkan untuk memahami, membersihkan,
-                            dan menginterpretasikan data dengan menggunakan alat dan teknik analisis terkini. Peserta
-                            akan terlibat dalam kuliah, latihan praktis, dan proyek-proyek untuk mengasah keterampilan
-                            mereka, sambil belajar cara menyajikan temuan dengan jelas kepada pemangku kepentingan.
-                            Tujuannya adalah menciptakan profesional yang siap untuk menghadapi tantangan analisis data
-                            dalam dunia kerja.
+                        <p class="card-text" style="text-align: justify;">Dirancang untuk memberikan pemahaman mendalam
+                            tentang teknik dan alat yang digunakan untuk mengubah data kompleks menjadi visualisasi yang
+                            mudah dipahami dan informatif. Peserta akan mempelajari prinsip-prinsip dasar visualisasi
+                            data, teknik visualisasi, serta penggunaan berbagai alat seperti Matplotlib, Seaborn,
+                            Plotly, dan Tableau. Kelas ini juga mencakup aspek storytelling dengan data untuk
+                            menyampaikan informasi secara efektif. Setelah menyelesaikan kelas ini, peserta akan
+                            memiliki keterampilan untuk membuat visualisasi data yang menarik dan fungsional, serta
+                            mampu menyampaikan wawasan data dengan cara yang lebih mudah dimengerti.
                         </p>
-                        <h3>Kurikulum</h3>
+                        <h3>Silabus</h3>
                         <ul class="list-group">
-                            <li class="list-group-item">Pengantar Data Science</li>
-                            <li class="list-group-item">Matematika dan Statistik Dasar</li>
-                            <li class="list-group-item">Pengolahan Data</li>
-                            <li class="list-group-item">Pemrograman Dasar</li>
-                            <li class="list-group-item">Machine Learning</li>
-                            <li class="list-group-item">Visualisasi Data</li>
-                            <li class="list-group-item">Proyek Praktis</li>
-                            <li class="list-group-item">Kajian Kasus</li>
+                            <li class="list-group-item">Pendahuluan dan Prinsip Dasar Visualisasi Data</li>
+                            <li class="list-group-item">Jenis-Jenis Visualisasi Data</li>
+                            <li class="list-group-item">Visualisasi dengan Matplotlib dan Seaborn</li>
+                            <li class="list-group-item">Visualisasi Interaktif dengan Plotly dan Bokeh</li>
+                            <li class="list-group-item">Storytelling dengan Data</li>
+                            <li class="list-group-item">Visualisasi Data dengan Tableau</li>
+                            <li class="list-group-item">Desain Visualisasi yang Efektif</li>
+                            <li class="list-group-item">Studi Kasus dan Proyek Akhir</li>
+                            <li class="list-group-item">Presentasi Proyek Akhir</li>
+                            <li class="list-group-item">Evaluasi dan Sertifikasi</li>
                             <!-- Tambahkan materi sesuai kebutuhan -->
                         </ul>
                         <div class="d-flex justify-content-between align-items-center mt-3">
-                            <a href="#" class="btn btn-primary">Daftar Sekarang</a>
+                            <a href="https://wa.me/6281319522590" class="btn btn-primary bi bi-whatsapp"> Daftar
+                                Sekarang</a>
                             <h3 class="card-text"><strong>Rp 459.000 </strong><small
                                     style="font-size: smaller; color: rgba(0, 0, 0, 0.331);"><del>Rp
                                         740.000</del></small></h3>
@@ -100,6 +119,18 @@
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>
+
+    <script>
+        // Mengatur posisi judul agar tidak tertutupi oleh header
+        function adjustTitlePosition() {
+            var headerHeight = document.getElementById('header').offsetHeight;
+            document.getElementById('title').style.marginTop = headerHeight + 'px';
+        }
+
+        // Panggil fungsi saat halaman dimuat dan saat menggulir
+        window.addEventListener('load', adjustTitlePosition);
+        window.addEventListener('scroll', adjustTitlePosition);
+    </script>
 </body>
 
 </html>
