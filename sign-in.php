@@ -124,30 +124,39 @@
 </html>
 
 <?php
-    session_start();
-    include 'connection/database.php';
+session_start();
+include 'connection/database.php';
 
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        $input_username_email = $_POST['email_user'];
-        $input_password = $_POST['kata_sandi'];
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $input_username_email = $_POST['email_user'];
+    $input_password = $_POST['kata_sandi'];
 
-        $sql = "SELECT * FROM user WHERE (email_user='$input_username_email') AND kata_sandi='$input_password'";
-        $result = $conn->query($sql);
+    $sql = "SELECT * FROM user WHERE email_user=? AND kata_sandi=?";
+    $stmt = $conn->prepare($sql);
+    $stmt->bind_param("ss", $input_username_email, $input_password);
+    $stmt->execute();
+    $result = $stmt->get_result();
 
-        if ($result->num_rows > 0) {
-            // Pengguna ditemukan, ambil data pengguna
-            $user = $result->fetch_assoc();
-            // Simpan peran pengguna dalam sesi
-            $_SESSION['role_user'] = $user['role_user'];
-            // Redirect berdasarkan peran pengguna
-            if ($_SESSION['role_user'] == 'Admin') {
-                header("Location: admin_page/user_control.php");
-            } else {
-                header("Location: index.html");
-            }
-            exit();
+    if ($result->num_rows > 0) {
+        // Pengguna ditemukan, ambil data pengguna
+        $user = $result->fetch_assoc();
+        // Simpan peran pengguna dalam sesi
+        $_SESSION['role_user'] = $user['role_user'];
+        $_SESSION['id_user'] = $user['id_user']; // Mengatur id_user dalam sesi
+        $_SESSION['email_user'] = $user['email_user'];
+
+        // Redirect berdasarkan peran pengguna
+        if ($_SESSION['role_user'] == 'Admin') {
+            header("Location: admin_page/user_control.php");
         } else {
-            $error_message = "Email atau password salah!";
+            header("Location: index.php");
         }
+        exit();
+    } else {
+        $error_message = "Email atau password salah!";
     }
+
+    $stmt->close();
+}
+$conn->close();
 ?>

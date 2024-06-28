@@ -44,6 +44,7 @@
                 <table class="table mt-3">
                   <thead>
                     <tr>
+                      <th class="text-center">ID User</th>
                       <th class="text-center">Nama Depan</th>
                       <th class="text-center">Nama Belakang</th>
                       <th class="text-center">Email</th>
@@ -66,6 +67,7 @@
                       // Memunculkan data dalam bentuk tabel HTML
                       while ($row = $result->fetch_assoc()) {
                         echo "<tr>";
+                        echo "<td>" . $row["id_user"] . "</td>";
                         echo "<td>" . $row["nama_depan"] . "</td>";
                         echo "<td>" . $row["nama_belakang"] . "</td>";
                         echo "<td>" . $row["email_user"] . "</td>";
