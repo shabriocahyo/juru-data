@@ -8,7 +8,7 @@ session_start();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tentang Kami - Juru Data Technology School</title>
+    <title>Tentang Kami | Juru Data Technology School</title>
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
@@ -188,7 +188,7 @@ session_start();
 </head>
 
 <body>
-    <?php include 'header.php';?>
+    <?php include 'header.php'; ?>
 
     <div id="title" class="container-fluid bg-primary py-5 mb-5 page-header">
         <div class="container py-5">
@@ -277,7 +277,8 @@ session_start();
                         <h4>Shabrio Cahyo W</h4>
                         <p>CEO</p>
                         <div class="description">
-                            Shabrio Cahyo W adalah pemimpin visioner dengan pengalaman lebih dari 20 tahun di industri teknologi.
+                            Shabrio Cahyo W adalah pemimpin visioner dengan pengalaman lebih dari 20 tahun di industri
+                            teknologi.
                             Ia berfokus pada transformasi digital dan kepemimpinan inovatif untuk menciptakan dampak
                             positif bagi masyarakat.
                         </div>
@@ -343,13 +344,11 @@ session_start();
     <script src="js/main.js"></script>
 
     <script>
-        // Mengatur posisi judul agar tidak tertutupi oleh header
         function adjustTitlePosition() {
             var headerHeight = document.getElementById('header').offsetHeight;
             document.getElementById('title').style.marginTop = headerHeight + 'px';
         }
 
-        // Panggil fungsi saat halaman dimuat dan saat menggulir
         window.addEventListener('load', adjustTitlePosition);
         window.addEventListener('scroll', adjustTitlePosition);
     </script>

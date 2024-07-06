@@ -4,7 +4,22 @@ include 'connection/database.php';
 $sql = "SELECT kelas_ds FROM user";
 $result = $conn->query($sql);
 
+session_start();
+$user_id = $_SESSION['id_user'];
+
+$sql_tugas_selesai = "SELECT COUNT(*) as count FROM tugas WHERE status = 'selesai' AND user_id = $user_id";
+$result_tugas_selesai = $conn->query($sql_tugas_selesai);
+$row_tugas_selesai = $result_tugas_selesai->fetch_assoc();
+$jumlah_tugas_selesai = $row_tugas_selesai['count'];
+
+$sql_modul = "SELECT COUNT(*) as count FROM modul_data_science";
+$result_modul = $conn->query($sql_modul);
+$row_modul = $result_modul->fetch_assoc();
+$jumlah_modul = $row_modul['count'];
+
 $conn->close();
+
+$persentase_progres = ($jumlah_modul > 0) ? ($jumlah_tugas_selesai / $jumlah_modul) * 100 : 0;
 
 ?>
 
@@ -15,7 +30,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Dashboard | Juru Data Technology School</title>
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -49,7 +64,6 @@ $conn->close();
 <body>
     <?php include 'header.php'; ?>
 
-    <!-- Main Content -->
     <div class="container mt-4">
         <h2 class="mb-4">Selamat Belajar, <?php echo htmlspecialchars($nama_depan . ' ' . $nama_belakang); ?></h2>
         <div class="row">
@@ -77,38 +91,37 @@ $conn->close();
                             <?php
                             include 'connection/database.php';
 
-                            // Ambil id_user dari sesi yang sedang login
                             $id_user = $_SESSION['id_user'];
 
-                            // Query untuk mengambil nilai kelas_ds dari tabel user berdasarkan id_user
                             $query = "SELECT kelas_ds FROM user WHERE id_user = ?";
                             $stmt = $conn->prepare($query);
 
-                            // Bind parameter id_user ke prepared statement
                             $stmt->bind_param("i", $id_user);
 
-                            // Lakukan eksekusi prepared statement
                             $stmt->execute();
 
-                            // Ambil hasil query
                             $result = $stmt->get_result();
 
                             if ($result->num_rows > 0) {
-                                // Ambil nilai kelas_ds dari hasil query
                                 $row = $result->fetch_assoc();
                                 $kelas_ds = $row['kelas_ds'];
 
-                                // Cek nilai kelas_ds untuk menampilkan bagian HTML sesuai kondisi
                                 if ($kelas_ds == true || $kelas_ds == 1) {
                                     ?>
                                     <li class="list-group-item">
                                         <div class="d-flex justify-content-between align-items-center">
                                             <div>
                                                 <h6 class="mb-0">Kelas Data Scientist</h6>
-                                                <!-- <small class="text-muted">Kategori: Kelas</small> -->
+                                                <small class="text-muted">Progres:
+                                                    <?php echo round($persentase_progres, 2); ?>%</small>
+                                            </div>
+                                            <div style="margin-left:auto; margin-right:10px">
+                                                <?php if ($jumlah_tugas_selesai == $jumlah_modul): ?>
+                                                    <a href="download-sertifikat.php?id_user=<?php echo $id_user; ?>"
+                                                        class="btn btn-sm btn-info">Download Sertifikat</a>
+                                                <?php endif; ?>
                                             </div>
                                             <div>
-                                                <!-- <span class="badge bg-success mx-4">Sedang Berlangsung</span> -->
                                                 <a href="tempat-belajar.php" class="btn btn-sm btn-primary">Mulai Belajar</a>
                                             </div>
                                         </div>
@@ -117,7 +130,6 @@ $conn->close();
                                 }
                             }
                             ?>
-                            <!-- Tambahkan keterangan kategori dan judul lainnya sesuai kebutuhan -->
                         </ul>
                     </div>
                 </div>

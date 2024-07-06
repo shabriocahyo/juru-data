@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sign In - Juru Data</title>
+    <title>Masuk | Juru Data Technology School</title>
     <link rel="icon" href="path/to/favicon.ico" type="image/x-icon">
     <script src="js/sign-in.js"></script>
     <style>
@@ -138,16 +138,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $result = $stmt->get_result();
 
     if ($result->num_rows > 0) {
-        // Pengguna ditemukan, ambil data pengguna
         $user = $result->fetch_assoc();
-        // Simpan peran pengguna dalam sesi
+
         $_SESSION['role_user'] = $user['role_user'];
-        $_SESSION['id_user'] = $user['id_user']; // Mengatur id_user dalam sesi
+        $_SESSION['id_user'] = $user['id_user'];
         $_SESSION['email_user'] = $user['email_user'];
 
-        // Redirect berdasarkan peran pengguna
         if ($_SESSION['role_user'] == 'Admin') {
             header("Location: admin_page/user_control.php");
+        } else if ($_SESSION['role_user'] == 'Pengajar') {
+            header("Location: admin_page/modul_control.php");
         } else {
             header("Location: index.php");
         }

@@ -1,13 +1,16 @@
 <?php
 include 'connection/database.php';
 
-$sql = "SELECT judul, deskripsi, video, thumbnail FROM modul_data_science";
+session_start();
+$user_id = $_SESSION['id_user'];
+
+$sql = "SELECT m.id AS modul_id, m.judul, m.deskripsi, m.video, m.thumbnail, t.status, t.feedback 
+        FROM modul_data_science m
+        LEFT JOIN tugas t ON m.id = t.modul_id AND t.user_id = $user_id
+        ORDER BY m.id";
 $result = $conn->query($sql);
 
-$row = $result->fetch_assoc();
-
 $conn->close();
-
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +19,7 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard</title>
+    <title>Belajar Data Science | Juru Data Technology School</title>
 
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
@@ -126,7 +129,7 @@ $conn->close();
             color: white;
         }
 
-        .status-direview {
+        .status-telah-direview {
             background-color: red;
             padding: 5px;
             border-radius: 5px;
@@ -145,47 +148,40 @@ $conn->close();
 <body>
     <?php include 'header.php'; ?>
 
-    <!-- Main Content -->
     <div class="container mt-4 main-content">
         <h2 class="mb-4 text-center">Kelas Data Science</h2>
 
-        <!-- Video Section -->
         <div class="video-section row">
-            <!-- Video Player -->
             <div class="video-player col-md-7">
                 <div class="card video-card mb-4">
-                    <div class="card-header">
-                        <?php echo $row['judul']; ?>
-                    </div>
+                    <div class="card-header" id="videoTitle"></div>
                     <div class="card-body">
                         <div class="embed-responsive embed-responsive-16by9 mb-3">
-                            <video class="embed-responsive-item" controls style="width: 100%; height:300px;">
-                                <source src="vid/ds-vid.mp4" type="video/mp4">
+                            <video class="embed-responsive-item" id="videoPlayer" controls
+                                style="width: 100%; height:300px;">
+                                <source id="videoSource" src="" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
                         </div>
-
-                        <p class="video-card-text">
-                            <?php echo $row['deskripsi']; ?>
-                        </p>
-
+                        <p class="video-card-text" id="videoDescription"></p>
                         <div class="form-group row">
                             <div class="col">
                                 <a class="btn btn-primary start-learning-btn" onclick="toggleSubmitForm()"
                                     style="margin-bottom: 5px">Kumpulkan Tugas</a>
                             </div>
                             <div class="col-auto">
-                                <p class="video-card-text mt-2"><span class="status-direview">Direview</span></p>
+                                <p class="video-card-text mt-2">
+                                    <span id="videoStatus" class="status-direview"></span>
+                                </p>
                             </div>
                         </div>
 
-                        <!-- Formulir untuk mengumpulkan tugas -->
-                        <div id="submitAssignmentForm" style="display: none;">
+                        <div id="submitAssignmentForm">
                             <form id="assignmentForm">
                                 <div class="form-group row">
                                     <div class="col">
-                                        <input type="text" class="form-control" id="assignmentLink"
-                                            placeholder="Masukkan link tugas Anda">
+                                        <input type="text" id="link_tugas" name="link_tugas" required
+                                            class="form-control" placeholder="Masukkan link tugas Anda">
                                     </div>
                                     <div class="col-auto">
                                         <button type="submit" class="btn btn-primary">Kirim</button>
@@ -193,18 +189,13 @@ $conn->close();
                                 </div>
                             </form>
                         </div>
+
                     </div>
                 </div>
             </div>
 
-            <!-- Video List -->
             <div class="video-list col-md-4" style="margin-left: auto;">
-                <!-- Loop untuk menampilkan semua modul -->
-                <?php
-                // Mengembalikan pointer ke awal hasil query
-                $result->data_seek(0);
-
-                while ($row = $result->fetch_assoc()): ?>
+                <?php while ($row = $result->fetch_assoc()): ?>
                     <div class="card video-card mb-4">
                         <img src="<?php echo $row['thumbnail']; ?>" alt="Thumbnail">
                         <div class="video-card-body">
@@ -212,17 +203,31 @@ $conn->close();
                             <p class="video-card-text">
                                 <?php echo $row['deskripsi']; ?>
                             </p>
-                            <a href="#" class="btn btn-primary start-learning-btn"
-                                onclick="changeVideo('<?php echo $row['judul']; ?>', '<?php echo $row['deskripsi']; ?>', '<?php echo $row['video']; ?>'); return false;">
-                                Mulai Belajar
-                            </a>
-
+                            <?php if (!empty($row['feedback'])): ?>
+                                <p class="video-card-feedback">
+                                    <strong>Feedback:</strong> <?php echo $row['feedback']; ?>
+                                </p>
+                            <?php endif; ?>
+                            <div class="form-group row">
+                                <div class="col">
+                                    <a href="#" class="btn btn-primary start-learning-btn"
+                                        onclick="changeVideo('<?php echo addslashes($row['judul']); ?>', '<?php echo addslashes($row['deskripsi']); ?>', '<?php echo $row['video']; ?>', '<?php echo strtolower(str_replace(' ', '-', $row['status'])); ?>', '<?php echo ucfirst($row['status']); ?>', '<?php echo $row['modul_id']; ?>', '<?php echo addslashes($row['feedback']); ?>'); return false;">
+                                        Mulai Belajar
+                                    </a>
+                                </div>
+                                <div class="col-auto">
+                                    <p class="video-card-text mt-2">
+                                        <span
+                                            class="status-<?php echo strtolower(str_replace(' ', '-', $row['status'])); ?>">
+                                            <?php echo ucfirst($row['status']); ?>
+                                        </span>
+                                    </p>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 <?php endwhile; ?>
-                <!-- Akhir loop modul -->
             </div>
-
         </div>
     </div>
 
@@ -236,32 +241,81 @@ $conn->close();
     <script src="lib/waypoints/waypoints.min.js"></script>
 
     <script>
+
+        function createTask(modul_id) {
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "create_task.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log(xhr.responseText);
+                    // Optionally update the status text on the page
+                }
+            };
+            xhr.send("modul_id=" + modul_id);
+        }
+
+        function changeVideo(title, description, videoSrc, statusClass, statusText, modul_id, feedback) {
+            document.getElementById('videoTitle').innerText = title;
+            document.getElementById('videoDescription').innerText = description;
+            document.getElementById('videoSource').src = videoSrc;
+            document.getElementById('videoPlayer').setAttribute('data-modul-id', modul_id);
+            document.getElementById('videoPlayer').load();
+
+            var statusElement = document.getElementById('videoStatus');
+            statusElement.className = 'status-' + statusClass;
+            statusElement.innerText = statusText;
+
+            var feedbackElement = document.createElement('p');
+            feedbackElement.className = 'video-card-feedback';
+            feedbackElement.innerHTML = '<strong>Feedback:</strong> ' + feedback;
+            document.getElementById('videoDescription').appendChild(feedbackElement);
+
+            createTask(modul_id);
+
+            window.scrollTo(0, 0);
+
+            return false;
+        }
+
+
         function toggleSubmitForm() {
-            var form = document.getElementById('submitAssignmentForm');
-            if (form.style.display === 'none' || form.style.display === '') {
-                form.style.display = 'block';
+            var form = document.getElementById("submitAssignmentForm");
+            if (form.style.display === "none") {
+                form.style.display = "block";
             } else {
-                form.style.display = 'none';
+                form.style.display = "none";
             }
         }
     </script>
 
     <script>
-        // Fungsi untuk mengubah konten video section
-        function changeVideo(judul, deskripsi, videoSrc) {
-            // Ubah judul video section
-            document.querySelector('.video-section .video-player .card-header').innerText = judul;
+        document.getElementById('assignmentForm').addEventListener('submit', function (event) {
+            event.preventDefault();
 
-            // Ubah deskripsi video section
-            document.querySelector('.video-section .video-player .video-card-text').innerText = deskripsi;
+            var link_tugas = document.getElementById('link_tugas').value;
+            var modul_id = document.getElementById('videoPlayer').getAttribute('data-modul-id');
+            var xhr = new XMLHttpRequest();
+            xhr.open("POST", "submit_tugas.php", true);
+            xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            xhr.onreadystatechange = function () {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    console.log(xhr.responseText);
+                    alert("Tugas berhasil dikirim!");
 
-            // Ubah video source
-            var videoPlayer = document.querySelector('.video-section .video-player video');
-            videoPlayer.src = videoSrc;
-            videoPlayer.load(); // Muat ulang video
-        }
+                    var statusElement = document.getElementById('videoStatus');
+                    statusElement.className = 'status-menunggu-review';
+                    statusElement.innerText = 'Menunggu Review';
+
+                    document.getElementById('submitAssignmentForm').style.display = 'none';
+                } else if (xhr.readyState === 4) {
+                    console.error("Error submitting assignment:", xhr.responseText);
+                    alert("Gagal mengirim tugas. Silakan coba lagi.");
+                }
+            };
+            xhr.send("link_tugas=" + encodeURIComponent(link_tugas) + "&modul_id=" + encodeURIComponent(modul_id));
+        });
     </script>
-
 
     <!-- Template Javascript -->
     <script src="js/main.js"></script>

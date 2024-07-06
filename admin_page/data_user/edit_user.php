@@ -18,6 +18,7 @@ if (isset($_GET['id_user'])) {
         $no_telp = $row["no_telp"];
         $alamat_user = $row["alamat_user"];
         $role_user = $row["role_user"];
+        $kelas_ds = $row["kelas_ds"];
     } else {
         // Jika tidak ada data pengguna dengan id yang diberikan, tindakan lain dapat diambil, misalnya redirect atau menampilkan pesan kesalahan
         echo "Data pengguna tidak ditemukan.";
@@ -37,7 +38,7 @@ if (isset($_GET['id_user'])) {
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>Admin Juru Data Technology School</title>
+    <title>Admin | Juru Data Technology School</title>
     <link href="../css/styles.css" rel="stylesheet">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
@@ -143,6 +144,14 @@ if (isset($_GET['id_user'])) {
                                         <option value="Admin">Admin</option>
                                     </select>
                                 </div>
+                                <div class="form-group">
+                                    <label class="mt-3 mb-2" for="kelas_ds">Kelas Data Science</label>
+                                    <select class="form-control" id="kelas_ds" name="kelas_ds"
+                                        value="<?php echo $kelas_ds; ?>">
+                                        <option value="0">FALSE</option>
+                                        <option value="1">TRUE</option>
+                                    </select>
+                                </div>
                                 <div class="mt-4 text-center mb-5">
                                     <a class="btn btn-dark bi bi-arrow-left-circle"
                                         onclick="location.href='/juru_data_web/admin_page/user_control.php'"></a>
@@ -188,6 +197,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $no_telp = $_POST["no_telp"];
     $alamat_user = $_POST["alamat_user"];
     $role_user = $_POST["role_user"];
+    $kelas_ds = $_POST["kelas_ds"];
 
     include '../../connection/database.php';
 
@@ -198,11 +208,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     kata_sandi = '$kata_sandi',
                     no_telp = '$no_telp',
                     alamat_user = '$alamat_user',
-                    role_user = '$role_user'
+                    role_user = '$role_user',
+                    kelas_ds = '$kelas_ds'
                 WHERE id_user = $id_user";
 
     if ($conn->query($sql) === TRUE) {
-        echo "Data berhasil diperbarui";
+        echo "<script type='text/javascript'>
+                alert('Data berhasil diperbarui.');
+                window.location.href = '../user_control.php';
+              </script>";
     } else {
         echo "Error: " . $sql . "<br>" . $conn->error;
     }

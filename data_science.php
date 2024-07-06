@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Data Science Class</title>
+    <title>Kelas Data Science | Juru Data Technology School</title>
     <!-- Favicon -->
     <link href="img/favicon.ico" rel="icon">
 
@@ -68,7 +68,6 @@
                 <div class="card my-5 shadow">
                     <img src="img/kelas-ds.png" class="card-img-top" alt="Class Thumbnail">
                     <div class="card-body">
-                        <!-- Deskripsi Kelas -->
                         <p class="card-text" style="text-align: justify;">Program pendidikan yang dirancang untuk
                             memberikan pemahaman mendalam
                             tentang konsep, alat, dan teknik yang digunakan dalam analisis data. Materi pelatihan
@@ -87,14 +86,13 @@
                             <li class="list-group-item">Visualisasi Data</li>
                             <li class="list-group-item">Proyek Praktis</li>
                             <li class="list-group-item">Kajian Kasus</li>
-                            <!-- Tambahkan materi sesuai kebutuhan -->
                         </ul>
                         <div class="d-flex justify-content-between align-items-center mt-3">
-                            <a href="https://wa.me/6281319522590" class="btn btn-primary bi bi-whatsapp"> Daftar Sekarang</a>
+                            <a href="https://wa.me/6281319522590" class="btn btn-primary bi bi-whatsapp"> Daftar
+                                Sekarang</a>
                             <h3 class="card-text"><strong>Rp 899.000 </strong><small
                                     style="font-size: smaller; color: rgba(0, 0, 0, 0.331);"><del>Rp
                                         1.299.000</del></small></h3>
-                            <!-- Tombol untuk mendaftar ke kelas -->
                         </div>
                     </div>
                 </div>
@@ -116,13 +114,11 @@
     <script src="js/main.js"></script>
 
     <script>
-        // Mengatur posisi judul agar tidak tertutupi oleh header
         function adjustTitlePosition() {
             var headerHeight = document.getElementById('header').offsetHeight;
             document.getElementById('title').style.marginTop = headerHeight + 'px';
         }
 
-        // Panggil fungsi saat halaman dimuat dan saat menggulir
         window.addEventListener('load', adjustTitlePosition);
         window.addEventListener('scroll', adjustTitlePosition);
     </script>
